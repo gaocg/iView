@@ -1,5 +1,5 @@
 <template>
-    <List size="default" style="width:200px">
+    <List :split="split" size="default" style="width:200px">
         <ListItem  :key="i" v-for="(item,i) in list">
             <img :src="item.url" style="width:100%"/>
         </ListItem>
@@ -8,12 +8,18 @@
 <script>
 export default {
     props:{
-        list:Array,
+        list:Array || Object,
     },
     data(){
         return {
-            a:2
+            split:false
         }
+    },
+    watch:{
+        // list:function(newV){
+            
+        //     //return newV;
+        // }
     },
     methods:{
 

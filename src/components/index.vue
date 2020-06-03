@@ -1,15 +1,15 @@
 <template>
   <Layout>
     <Sider></Sider>
-    <Content>
+    <Layout>
       <Header></Header>
       <Content>
-        <List>
-          <ListItem ><p @click="clk">瀑布流</p></ListItem>
+        <List class="index">
+          <ListItem  v-for="(item,i) in list" :key="i"><p @click="clk(item)"><Icon type="ios-aperture" />{{item.title}}</p></ListItem>
         </List>
       </Content>
       <Footer></Footer>
-    </Content>
+    </Layout>
     <Sider></Sider>
   </Layout>
 </template>
@@ -18,12 +18,12 @@
 export default {
   data(){
     return {
-
+      list:require("../data/home.json")
     }
   },
   methods:{
-    clk(){
-      this.$router.push({name:"desktop"});
+    clk(item){
+      item.name ?this.$router.push({name:item.name}) :"";
     }
   },
   mounted(){
@@ -34,5 +34,8 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.index{width:100%}
+.index li{cursor: pointer;}
 
+.index p{padding-left:10px}
 </style>
