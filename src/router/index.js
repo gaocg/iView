@@ -10,6 +10,11 @@ export default new Router({
             path:"/",
             name:"index",
             component:()=> import("@/components/index"),
-        }
+        },
+        {
+            path:"/desktop",
+            name:"desktop",
+            component:()=> import("@/components/desktop"),
+        },
     ]
 })
