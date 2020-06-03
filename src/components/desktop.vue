@@ -30,14 +30,11 @@ export default {
         },
         addPic:function(i){
             const obj = this.list[this.radom()];
-            console.log(i,obj);
             this.waterfall[i].push(obj);
         },
         checkHeight:(list)=>{
             let i = 0;
             for(let k in list){
-                console.log(i,k);
-                console.log(list[i].$el.offsetHeight ,list[k].$el.offsetHeight);
                 if(list[i].$el.offsetHeight > list[k].$el.offsetHeight){
                     i = k;
                 }
@@ -52,7 +49,7 @@ export default {
         if( list[i].$el.offsetHeight < window.outerHeight){
             setTimeout(()=>{
                 this.addPic(i);//添加图片
-            },1000)
+            },100)
             
         }
     },
