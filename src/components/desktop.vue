@@ -20,7 +20,8 @@ export default {
                 {"id":"e","url":require("../assets/e.jpg") },
                 {"id":"f","url":require("../assets/f.jpg") },
             ],
-            waterfall:[]
+            waterfall:[],
+            height:window.outerHeight,
         }
     },
     methods:{
@@ -28,9 +29,16 @@ export default {
             const n = Math.floor(Math.random()*10);
             return n > 5 ?n-5 : n;
         },
-        addPic:function(i){
-            const obj = this.list[this.radom()];
-            this.waterfall[i].push(obj);
+        addPic:function(list){
+             let i = this.checkHeight(list);//获得高度最低的列下标
+            if(!list){
+                const obj = this.list[this.radom()];
+                this.waterfall[i].push(obj);
+            }else if( list[i].$el.offsetHeight < this.height){
+                const obj = this.list[this.radom()];
+                this.waterfall[i].push(obj);
+            }
+            
         },
         checkHeight:(list)=>{
             let i = 0;
@@ -40,25 +48,35 @@ export default {
                 }
             }
             return i;
+        },
+        scrol:function(){
+            let list = this.$refs.cc;
+            setTimeout(()=>{
+                    this.addPic(list);//添加图片
+            
+            },100)
         }
     },
 
     updated(){
-        let list = this.$refs.cc;
-        let i = this.checkHeight(list);//获得高度最低的列下标
-        if( list[i].$el.offsetHeight < window.outerHeight){
-            setTimeout(()=>{
-                this.addPic(i);//添加图片
-            },100)
-            
-        }
+        this.scrol();
+        
     },
     mounted(){
         this.waterfall  = [[],[],[],[]];
+        window.addEventListener("scroll",()=>{
+            let top = document.documentElement.scrollTop;
+            let viewh =document.documentElement.clientHeight;
+            let h = document.documentElement.offsetHeight;
+            if(top + viewh == h){
+                this.height+= window.outerHeight;
+                this.scrol();//添加图片
+            }
+        })
     }
 }
 </script>
 <style>
-
+.desktop{overflow: hidden;}
 .aa{float:left;margin:0 10px}
 </style>

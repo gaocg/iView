@@ -1,6 +1,8 @@
 [{
     "title":"瀑布流",
-    "name":"desktop"
+    "name":"desktop",
+    "icon":"ios-aperture"
 },{
-    "title":"瀑布流"
+    "title":"还没想好做什么",
+    "icon":"md-help"
 }]

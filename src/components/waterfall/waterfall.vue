@@ -8,7 +8,7 @@
 <script>
 export default {
     props:{
-        list:Array || Object,
+        list:Array ,
     },
     data(){
         return {

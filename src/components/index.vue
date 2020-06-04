@@ -5,7 +5,7 @@
       <Header></Header>
       <Content>
         <List class="index">
-          <ListItem  v-for="(item,i) in list" :key="i"><p @click="clk(item)"><Icon type="ios-aperture" />{{item.title}}</p></ListItem>
+          <ListItem  v-for="(item,i) in list" :key="i"><p @click="clk(item)"><Icon :type="item.icon" />{{item.title}}</p></ListItem>
         </List>
       </Content>
       <Footer></Footer>
