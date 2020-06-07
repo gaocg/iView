@@ -23,6 +23,7 @@ export default {
   },
   methods:{
     clk(item){
+      this.$store.commit("increment");
       item.name ?this.$router.push({name:item.name}) :"";
     }
   },

@@ -3,6 +3,10 @@
     "name":"desktop",
     "icon":"ios-aperture"
 },{
+    "title":"了解一下vuex吧",
+    "name":"vuex",
+    "icon":"md-help"
+},{
     "title":"还没想好做什么",
     "icon":"md-help"
 }]

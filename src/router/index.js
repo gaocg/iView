@@ -16,5 +16,15 @@ export default new Router({
             name:"desktop",
             component:()=> import("@/components/desktop"),
         },
+        {
+            path:"/vuex",
+            name:"vuex",
+            component:()=> import("@/components/whatsVuex/vuex"),
+        },
+        {
+            path:"/*",
+            name:"*",
+            component:()=> import("@/components/404"),
+        },
     ]
 })
