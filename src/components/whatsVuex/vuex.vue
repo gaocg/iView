@@ -1,13 +1,17 @@
 <template>
     <div>
-        <ul>
-            <li>{{this.$store.state.a.count}}</li>
-            <li>{{getdoA}}</li>
-            <li>{{getCountA}}</li>
-            <li>{{this.$store.state.b.count}}</li>
-            <li>{{getdoB}}</li>
-            <li>{{getCountB}}</li>
+        
+        <ul >
+            <li><p>{{this.$store.state.a.count}}</p></li>
+            <li><p>{{getdoA}}</p></li>
+            <li><p>{{getCountA}}</p></li>
+            <li><p>{{this.$store.state.b.count}}</p></li>
+            <li><p>{{getdoB}}</p></li>
+            <li><p>{{getCountB}}</p></li>
         </ul>
+        <Button @click="click">触发1</Button>
+        <Button @click="click2">触发2</Button>
+        <Button @click="reset">reset</Button>
     </div>
 </template>
 <script>
@@ -31,16 +35,29 @@ export default {
         ])
     },
     methods:{
-    ...mapMutations([
-         "incrementA",
+
+        ...mapMutations([
+            "incrementA",
+            ]),
+        ...mapActions([
+            "incrementA"
         ]),
-    ...mapActions([
-        "incrementA"
-    ])
+        click(){
+            this.$store.commit("incrementA");
+        },
+        click2(){
+            this.$store.commit("incrementB");
+        },
+        reset(){
+            this.$store.dispatch("incrementA");
+            this.$store.dispatch("incrementB");
+        }
     },
     mounted(){
-        this.$store.commit("incrementA");
-        this.$store.dispatch("incrementB");
+        
     }
 }
 </script>
+<style>
+p{width:300px;display:inline-block}
+</style>

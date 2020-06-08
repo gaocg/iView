@@ -1,7 +1,6 @@
 //模块化vuex 
 export default {
     moduleA :{
-
         state:{
             count:"初始化A",
         },
@@ -13,11 +12,14 @@ export default {
         mutations: {
             incrementA (state) {
                 state.count = "触发incrementA方法"
+            },
+            resetA(state){
+                state.count = "初始化";
             }
         },
         actions:{
             incrementA ({commit}) {
-                commit("incrementA")
+                commit("resetA")
             }
         }
     },
@@ -33,11 +35,14 @@ export default {
         mutations: {
             incrementB (state) {
                 state.count = "触发incrementB方法"
+            },
+            resetB(state){
+                state.count = "初始化";
             }
         },
         actions:{
             incrementB ({commit}) {
-                commit("incrementB")
+                commit("resetB")
             }
         }
     }

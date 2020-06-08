@@ -15,6 +15,7 @@ export default new Router({
             path:"/desktop",
             name:"desktop",
             component:()=> import("@/components/desktop"),
+            keepAlive:true
         },
         {
             path:"/vuex",

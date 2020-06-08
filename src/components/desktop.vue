@@ -6,12 +6,14 @@
 </template>
 <script>
 const waterfall = ()=>import("../components/waterfall/waterfall");
+console.log(waterfall);
 export default {
     components:{
         "waterfall":waterfall
     },
     data(){
         return {
+            state:false,
             list:[
                 {"id":"a","url":require("../assets/a.jpeg")},
                 {"id":"b","url":require("../assets/b.jpg") },
@@ -27,7 +29,7 @@ export default {
     methods:{
         radom: ()=>{
             const n = Math.floor(Math.random()*10);
-            return n > 5 ?n-5 : n;
+            return n > 5 ? n-5 : n;
         },
         addPic:function(list){
              let i = this.checkHeight(list);//获得高度最低的列下标
@@ -37,6 +39,9 @@ export default {
             }else if( list[i].$el.offsetHeight < this.height){
                 const obj = this.list[this.radom()];
                 this.waterfall[i].push(obj);
+                
+            }else{
+                this.state = false;
             }
             
         },
@@ -51,16 +56,19 @@ export default {
         },
         scrol:function(){
             let list = this.$refs.cc;
+
             setTimeout(()=>{
                     this.addPic(list);//添加图片
-            
             },100)
         }
     },
 
-    updated(){
+    beforeUpdate(){
         this.scrol();
-        
+        this.state = false;
+    },
+    updated(){
+
     },
     mounted(){
         this.waterfall  = [[],[],[],[]];
@@ -69,6 +77,7 @@ export default {
             let viewh =document.documentElement.clientHeight;
             let h = document.documentElement.offsetHeight;
             if(top + viewh == h){
+                this.state = true;
                 this.height+= window.outerHeight;
                 this.scrol();//添加图片
             }
