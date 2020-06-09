@@ -20,7 +20,12 @@ export default new Router({
         {
             path:"/vuex",
             name:"vuex",
-            component:()=> import("@/components/whatsVuex/vuex"),
+            component:()=> import("@/components/vuexStore/vuex"),
+        },
+        {
+            path:"/fighter",
+            name:"fighter",
+            component:()=> import("@/components/fighter/fighter-game"),
         },
         {
             path:"/*",

@@ -9,22 +9,29 @@
 export default {
     props:{
         list:Array ,
+        index:Number,
     },
     data(){
         return {
-            split:false
+            split:false,
+            Obj:{},
         }
     },
     watch:{
-        // list:function(newV){
-            
-        //     //return newV;
-        // }
+
     },
+    updated(){
+        this.Obj[this.index] = this.$el.offsetHeight;
+        this.$emit("height",this.Obj);
+    },
+
     methods:{
 
     },
-    mounted(){    }
+    mounted(){
+        this.Obj[this.index] = this.$el.offsetHeight;
+        this.$emit("height",this.Obj);
+    }
 }
 </script>
 <style>

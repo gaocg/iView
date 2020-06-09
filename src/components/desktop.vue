@@ -1,19 +1,18 @@
-<template @scroll.native="scrol">
-    <div class="desktop">
-        <waterfall class="aa" ref="cc" :list="item" :key="i" v-for="(item,i) in waterfall" />
+<template >
+    <div class="desktop" >
+        <waterfall @height="waterfallHeight" class="aa" ref="cc" :list="item" :key="i" :index="i"  v-for="(item,i) in waterfall" />
     </div>
     
 </template>
 <script>
 const waterfall = ()=>import("../components/waterfall/waterfall");
-console.log(waterfall);
 export default {
     components:{
         "waterfall":waterfall
     },
     data(){
         return {
-            state:false,
+            state:true,
             list:[
                 {"id":"a","url":require("../assets/a.jpeg")},
                 {"id":"b","url":require("../assets/b.jpg") },
@@ -24,6 +23,8 @@ export default {
             ],
             waterfall:[],
             height:window.outerHeight,
+            heightList:{},
+            i : 0
         }
     },
     methods:{
@@ -31,44 +32,45 @@ export default {
             const n = Math.floor(Math.random()*10);
             return n > 5 ? n-5 : n;
         },
-        addPic:function(list){
-             let i = this.checkHeight(list);//获得高度最低的列下标
-            if(!list){
-                const obj = this.list[this.radom()];
+        addPic:function(){
+            const obj = this.list[this.radom()];
+            const i = this.minHeight();
+            if(this.heightList[i] < this.height){
                 this.waterfall[i].push(obj);
-            }else if( list[i].$el.offsetHeight < this.height){
-                const obj = this.list[this.radom()];
-                this.waterfall[i].push(obj);
-                
             }else{
-                this.state = false;
+                this.state = true;
             }
             
         },
-        checkHeight:(list)=>{
-            let i = 0;
-            for(let k in list){
-                if(list[i].$el.offsetHeight > list[k].$el.offsetHeight){
-                    i = k;
-                }
-            }
-            return i;
-        },
         scrol:function(){
-            let list = this.$refs.cc;
-
+            this.state = false;
             setTimeout(()=>{
-                    this.addPic(list);//添加图片
+                this.state = true;
+                this.addPic();//添加图片
             },100)
+        },
+        waterfallHeight(Obj){
+           this.heightList = {...this.heightList,...Obj}
+        },
+        minHeight(){
+            let list = [];
+            for(let k in this.heightList){
+                list.push(this.heightList[k]);
+            }
+            return list.indexOf(Math.min(...list));
         }
     },
 
     beforeUpdate(){
-        this.scrol();
-        this.state = false;
+        // this.scrol();
+        // this.state = false;
     },
     updated(){
-
+        //防抖
+        if(this.state){
+            this.scrol();
+        }
+        
     },
     mounted(){
         this.waterfall  = [[],[],[],[]];
@@ -76,8 +78,7 @@ export default {
             let top = document.documentElement.scrollTop;
             let viewh =document.documentElement.clientHeight;
             let h = document.documentElement.offsetHeight;
-            if(top + viewh == h){
-                this.state = true;
+            if(top + viewh == h && this.state){
                 this.height+= window.outerHeight;
                 this.scrol();//添加图片
             }
