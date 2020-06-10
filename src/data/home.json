@@ -7,6 +7,10 @@
     "name":"vuex",
     "icon":"md-help"
 },{
+    "title":"一个小游戏",
+    "name":"fighter",
+    "icon":"md-help"
+},{
     "title":"还没想好做什么",
     "icon":"md-help"
 }]

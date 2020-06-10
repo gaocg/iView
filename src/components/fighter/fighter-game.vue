@@ -1,8 +1,11 @@
 <!---->
 <template>
-    <Layout >
+    <Layout style="height:100%">
         <Layout>
-            <Content><fighter/></Content>
+            <Content style="height:900px">
+                <fighter />
+                
+            </Content>
         </Layout>
         <Sider width="400">
             记分板
@@ -14,6 +17,7 @@
 export default {
     components:{
         fighter:()=>import("./fighter"),
+        
     },
     data(){
         return{
