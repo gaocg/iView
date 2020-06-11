@@ -26,9 +26,9 @@ const store = new Vuex.Store({
 
   // }
   modules:{
-     
       a:Module.moduleA,
       b:Module.moduleB,
+      game:Module.gameModule,
   }
 });
 new Vue({
