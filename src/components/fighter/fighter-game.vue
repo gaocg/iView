@@ -7,8 +7,8 @@
                 <enemyPlane :key="index"  :enemyPlane="item" v-for="(item,index) in this.$store.state.game.enemyPlane"/>             
             </Content>
         </Layout>
-        <Sider width="400">
-            记分板
+        <Sider width="400" >
+            <controlArea />
         </Sider>
     </Layout>
 </template>
@@ -17,7 +17,8 @@
 export default {
     components:{
         fighter:()=>import("./fighter"),
-        enemyPlane:()=>import("./enemyPlane")
+        enemyPlane:()=>import("./enemyPlane"),
+        controlArea:()=>import("./controlArea")
     },
     data(){
         return{
@@ -40,7 +41,7 @@ export default {
         }
     },
     mounted(){
-        this.addEnemyPlane()
+        //this.addEnemyPlane()
     }
 }
 </script>

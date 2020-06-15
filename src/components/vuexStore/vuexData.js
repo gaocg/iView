@@ -52,14 +52,19 @@ export default {
             enemyPlane:[],
             fighter:{
                 fontSize:"50px",//飞机尺寸
+                destroy:true
             }
         },
         //getter属性：
         getters:{
-            //getCountB:state => state.count="触发getCountB方",
+            getScore:state => state.count.filter(item=> item.destroy == 1).length,
             //getdoB:(state,getters) =>  getters.getCountB + "和getdoB方法"
         },
         mutations: {
+            //开始游戏
+            start(state){
+                state.fighter.destroy = false;
+            },
             bulletShoot (state,obj) {//发射子弹
                 state.count.push(obj)
             },
@@ -77,13 +82,12 @@ export default {
                 state.enemyPlane.map((item)=>{
                     if(item.left < coordinate.min_x && item.left < coordinate.max_x && item.top > coordinate.min_h && item.top < coordinate.max_h){
                         item.destroy = true;
-                        bullet.destroy = true;
+                        bullet.destroy = 1;
                     }
                 })
             },
             upDataFighter(state,fighter){
                 state.fighter = {...fighter};
-                console.log(fighter)
             },
             //
             fighterDestroy(state,enemyPlane){
@@ -93,7 +97,12 @@ export default {
                     min_h:enemyPlane.top,
                     max_h:enemyPlane.top+50,
                 }
-                if(state.fighter.left > coordinate.min_x && state.fighter.left < coordinate.max_x && state.fighter.top > coordinate.min_h && state.fighter.top < coordinate.max_h){
+                console.log(enemyPlane.top)
+                if(state.fighter.left+50 > coordinate.min_x 
+                    && state.fighter.left < coordinate.max_x 
+                    && state.fighter.top+50 > coordinate.min_h 
+                    && state.fighter.top < coordinate.max_h){
+                    console.log(state.fighter,enemyPlane);
                     state.fighter.destroy = true;
                     enemyPlane.destroy = true;
                 }

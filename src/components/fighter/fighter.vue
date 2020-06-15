@@ -1,7 +1,7 @@
 <!--飞机本机-->
 <template>
     <div style="width:100%;height:100%">
-        <Icon id="fighter" :style="{}" ref="fighter" type="md-jet" />
+        <Icon v-if="!this.$store.state.game.fighter.destroy" id="fighter" :style="{}" ref="fighter" type="md-jet" />
         <shoot  :key="index" :position="item" v-for="(item,index) in this.$store.state.game.count" />
     </div>
     
@@ -56,13 +56,16 @@ export default {
                 index:this.index,
                 t:this.$refs.fighter.$el.offsetTop ,
                 l:this.$refs.fighter.$el.offsetLeft + Math.sin(45)*this.$refs.fighter.$el.clientWidth/2 -2,
-                destroy:false,
+                destroy:0,
             };
             this.$store.commit("bulletShoot",position)
             this.index++;
         }
     },
     mounted(){
+        if(this.$store.state.game.fighter.destroy){
+            return 
+        }
         this.fighter.left = this.$refs.fighter.$el.offsetLeft;
         this.fighter.top = this.$refs.fighter.$el.offsetTop;
         window.onkeydown = (e)=>{

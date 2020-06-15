@@ -17,7 +17,7 @@ export default {
             this.position.t-=1;
             this.$store.commit("destroy",this.position)
             if(this.position.t < 0){
-                this.position.destroy = true;
+                this.position.destroy = 2;
             }
         }
     },
