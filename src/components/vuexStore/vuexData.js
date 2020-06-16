@@ -48,6 +48,7 @@ export default {
     },
     gameModule : {
         state:{
+            gameState:0,//游戏状态
             count:[],
             enemyPlane:[],
             fighter:{
@@ -64,6 +65,7 @@ export default {
             //开始游戏
             start(state){
                 state.fighter.destroy = false;
+                state.gameState = 1;
             },
             bulletShoot (state,obj) {//发射子弹
                 state.count.push(obj)
@@ -97,7 +99,6 @@ export default {
                     min_h:enemyPlane.top,
                     max_h:enemyPlane.top+50,
                 }
-                console.log(enemyPlane.top)
                 if(state.fighter.left+50 > coordinate.min_x 
                     && state.fighter.left < coordinate.max_x 
                     && state.fighter.top+50 > coordinate.min_h 
@@ -105,10 +106,30 @@ export default {
                     console.log(state.fighter,enemyPlane);
                     state.fighter.destroy = true;
                     enemyPlane.destroy = true;
+                    state.gameState = 2;
                 }
             }
         },
         actions:{
+            createEnemyPlane(ctx){
+                let time= "";
+                if(ctx.state.gameState == 1){
+                    time = setInterval(()=>{
+                        console.log(ctx.state.gameState)
+                        const enemyPlane = {
+                            index:ctx.state.enemyPlane.length,
+                            destroy:false,
+                            left:Math.random()*500,
+                            top:0
+                        };
+                        ctx.commit("addEnemyPlane",enemyPlane);
+                        if(ctx.state.gameState != 1){
+                            clearInterval(time)
+                        }
+                    },2000)
+                }
+               
+            }
         }
     }
 }

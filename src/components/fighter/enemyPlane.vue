@@ -22,8 +22,10 @@ export default {
         this.timeout = setInterval(()=>{
             this.enemyPlane.top++;
             this.$store.commit("fighterDestroy",this.enemyPlane)
-            if(this.enemyPlane.top > document.body.offsetHeight ){
+            if(this.enemyPlane.top > document.body.offsetHeight ){//超出销毁
                 this.enemyPlane.destroy = true;
+                clearInterval(this.timeout)
+            }else if(this.$store.state.game.gameState!=1){//游戏结束 停止所有定时器
                 clearInterval(this.timeout)
             }
         },10)

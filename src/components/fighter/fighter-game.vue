@@ -10,6 +10,7 @@
         <Sider width="400" >
             <controlArea />
         </Sider>
+        <Modal :value="this.$store.state.game.gameState == 2"><div>游戏结束</div></Modal>
     </Layout>
 </template>
 <script>
@@ -23,8 +24,12 @@ export default {
     data(){
         return{
             timeout:"",
+            state:this.$store.state.game.gameState,
             index:0,
         }
+    },
+    watch:{
+
     },
     methods:{
         addEnemyPlane(){
@@ -39,6 +44,8 @@ export default {
                 this.$store.commit("addEnemyPlane",enemyPlane)
             },2000)
         }
+    },
+    updated(){
     },
     mounted(){
         //this.addEnemyPlane()

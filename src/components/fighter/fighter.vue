@@ -63,16 +63,13 @@ export default {
         }
     },
     mounted(){
-        if(this.$store.state.game.fighter.destroy){
-            return 
-        }
-        this.fighter.left = this.$refs.fighter.$el.offsetLeft;
-        this.fighter.top = this.$refs.fighter.$el.offsetTop;
-        window.onkeydown = (e)=>{
+        window.addEventListener("keydown",(e)=>{
+            this.fighter.left = this.$refs.fighter.$el.offsetLeft;
+            this.fighter.top = this.$refs.fighter.$el.offsetTop;
             const move = this.move(10,e.keyCode);
             this.$store.commit("upDataFighter",this.fighter)
             this.$refs.fighter.$el.style[move.direction] = move.distance + "px";
-        }
+        })
     }
 }
 </script>

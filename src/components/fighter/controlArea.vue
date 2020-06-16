@@ -3,9 +3,9 @@
     <div id="controlArea">
         <div >
             <List>
-                <ListItem><lable>游戏时间</lable></ListItem>
-                <ListItem><lable>积分</lable><span>{{this.$store.getters.getScore*10}}</span></ListItem>
-                <ListItem><lable>消耗弹药</lable><span>{{}}</span></ListItem>
+                <ListItem>游戏时间</ListItem>
+                <ListItem>积分<span>{{this.$store.getters.getScore*10}}</span></ListItem>
+                <ListItem>消耗弹药<span></span></ListItem>
             </List>
         </div>
          <div>设置</div>
@@ -24,6 +24,7 @@ export default {
     methods:{
         start(){
             this.$store.commit("start");
+            this.$store.dispatch("createEnemyPlane")
         }
     },
     mounted(){
