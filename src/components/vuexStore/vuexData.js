@@ -53,7 +53,10 @@ export default {
             enemyPlane:[],
             fighter:{
                 fontSize:"50px",//飞机尺寸
-                destroy:true
+                destroy:true,
+                top:800,
+                left:200,
+                speed:300,//子弹速度
             }
         },
         //getter属性：
@@ -67,6 +70,20 @@ export default {
                 state.fighter.destroy = false;
                 state.gameState = 1;
             },
+            
+            clear(state){
+                state.count = [];
+                state.gameState = 0;
+                state.enemyPlane = [];
+                state.fighter = {
+                    fontSize:"50px",//飞机尺寸
+                    destroy:true,
+                    top:800,
+                    left:200,
+                    shootspeed:300,//子弹速度\
+                    movespeed:50,
+                }
+            },
             bulletShoot (state,obj) {//发射子弹
                 state.count.push(obj)
             },
@@ -77,13 +94,14 @@ export default {
             destroy(state,bullet){
                 const coordinate = {
                     min_x:bullet.l,
-                    max_x:bullet.l+50,//50是敌机尺寸
+                    max_x:bullet.l+45,//50是敌机尺寸
                     min_h:bullet.t,
-                    max_h:bullet.t+50,
+                    max_h:bullet.t+45,
                 }
-                state.enemyPlane.map((item)=>{
+                state.enemyPlane.filter(item=>  !item.destroy).map((item)=>{
                     if(item.left < coordinate.min_x && item.left < coordinate.max_x && item.top > coordinate.min_h && item.top < coordinate.max_h){
                         item.destroy = true;
+
                         bullet.destroy = 1;
                     }
                 })
@@ -115,7 +133,6 @@ export default {
                 let time= "";
                 if(ctx.state.gameState == 1){
                     time = setInterval(()=>{
-                        console.log(ctx.state.gameState)
                         const enemyPlane = {
                             index:ctx.state.enemyPlane.length,
                             destroy:false,
