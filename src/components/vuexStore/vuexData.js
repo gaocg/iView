@@ -50,7 +50,12 @@ export default {
         state:{
             gameState:0,//游戏状态
             count:[],
-            enemyPlane:[],
+            enemyPlane:[{
+                index:0,
+                destroy:false,
+                left:Math.random()*500,
+                top:111
+            }],
             fighter:{
                 fontSize:"50px",//飞机尺寸
                 destroy:true,
@@ -70,7 +75,6 @@ export default {
                 state.fighter.destroy = false;
                 state.gameState = 1;
             },
-            
             clear(state){
                 state.count = [];
                 state.gameState = 0;

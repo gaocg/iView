@@ -2,7 +2,7 @@
 <template>
     <Layout style="height:100%">
         <Layout>
-            <Content style="height:900px">
+            <Content style="height:900px" id="gameArea">
                 <fighter v-if="!this.$store.state.game.fighter.destory" />  
                 <enemyPlane :key="index"  :enemyPlane="item" v-for="(item,index) in this.$store.state.game.enemyPlane"/>             
             </Content>
@@ -32,26 +32,15 @@ export default {
 
     },
     methods:{
-        addEnemyPlane(){
-            this.timeout = setInterval(()=>{
-                const enemyPlane = {
-                    index:this.index,
-                    destroy:false,
-                    left:Math.random()*500,
-                    top:0
-                };
-                this.index++;
-                this.$store.commit("addEnemyPlane",enemyPlane)
-            },2000)
-        }
     },
     updated(){
     },
     mounted(){
+        console.log(this.$store.state.game.enemyPlane)
         //this.addEnemyPlane()
     }
 }
 </script>
 <style>
-
+#gameArea{overflow: hidden;position: relative;}
 </style>

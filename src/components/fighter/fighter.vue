@@ -63,6 +63,7 @@ export default {
         //设置移动方向及速度
         move(n,type){
             const move = {};
+            
             switch(type){
                 case "left"://左移 
                     move.direction = "left";
@@ -74,20 +75,21 @@ export default {
                     break;
                 case "right"://右移
                     move.direction = "left";
-                    move.distance =  this.fighter.left < 900 ?  this.fighter.left+=n : 0;        
+                    move.distance =  this.fighter.left < this.$el.clientWidth-50 ?  this.fighter.left+=n : this.$el.clientWidth-50;        
                     break;
                 case "bottom"://下移
                     move.direction = "top";
-                    move.distance =  this.fighter.top >= 0 ?  this.fighter.top+=n : 0;        
+                    move.distance =  this.fighter.top < this.$el.clientHeight-50 ?  this.fighter.top+=n : this.$el.clientHeight-50;        
                     break;       
                
             }
+            console.log(move.distance)
              return  move;
         },
         
         shoot(v){
             //if(this.time) return;//节流
-            if(!v) return clearInterval(this.time);
+            if(!v || !this.$refs.fighter) return clearInterval(this.time);
             let position = {
                     index:this.index,
                     t:this.$refs.fighter.$el.offsetTop ,
@@ -121,7 +123,6 @@ export default {
                }
            }
            if(!list.length) return;
-
            setTimeout(()=>{
                this.setPosition()
            },this.movespeed)
@@ -137,7 +138,7 @@ export default {
     }
 }
 </script>
-<style>
+<style scoped>
 #fighter{font-size:50px;transform: rotate(-45deg);display:inline-block;position: relative;}
 .bullets{position: absolute;top:0;width:10px;}
 

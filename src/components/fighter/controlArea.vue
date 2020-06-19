@@ -28,10 +28,13 @@ export default {
     data(){
         return {
             state:{
-                hightSpeed:false,
+                hightShoot:false,
                 hightMove:false,
             }
         }
+    },
+    computed:{
+
     },
     methods:{
         start(){
@@ -41,6 +44,12 @@ export default {
         },
         change(){
           console.log(this.state)
+          const shoot = this.state.hightSpeed ? 150 : 300;
+          const move = this.state.hightMove ? 50 : 30;
+          const fighter = this.$store.state.game.fighter;
+          fighter.shootspeed = shoot;
+          fighter.movespeed = move;
+          this.$store.commit("upDataFighter",fighter);       
         }
     },
     mounted(){
@@ -64,7 +73,7 @@ export default {
 }
 label{text-indent:10px;width:100px;text-align: right;}
 span{text-indent:10px}
-#controlArea .btn{padding:5px;border:none}
+#controlArea .btn{border:none}
 .flex{display:flex;justify-content: space-between;flex-wrap: wrap;}
 .ivu-cell{width:50%}
 .flex i{padding-right:10px}

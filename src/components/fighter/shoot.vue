@@ -37,6 +37,6 @@ export default {
     },
 }
 </script>
-<style>
+<style scoped>
 i{display: inline-block;transform: rotate(-45deg);position: absolute;}
 </style>
