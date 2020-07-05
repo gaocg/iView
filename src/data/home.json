@@ -11,6 +11,10 @@
     "name":"fighter",
     "icon":"md-help"
 },{
+    "title":"mobile单页应用",
+    "name":"mobile",
+    "icon":"md-help"
+},{
     "title":"还没想好做什么",
     "icon":"md-help"
 }]

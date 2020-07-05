@@ -50,12 +50,7 @@ export default {
         state:{
             gameState:0,//游戏状态
             count:[],
-            enemyPlane:[{
-                index:0,
-                destroy:false,
-                left:Math.random()*500,
-                top:111
-            }],
+            enemyPlane:[],
             fighter:{
                 fontSize:"50px",//飞机尺寸
                 destroy:true,
@@ -125,7 +120,7 @@ export default {
                     && state.fighter.left < coordinate.max_x 
                     && state.fighter.top+50 > coordinate.min_h 
                     && state.fighter.top < coordinate.max_h){
-                    console.log(state.fighter,enemyPlane);
+
                     state.fighter.destroy = true;
                     enemyPlane.destroy = true;
                     state.gameState = 2;

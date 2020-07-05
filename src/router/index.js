@@ -28,6 +28,11 @@ export default new Router({
             component:()=> import("@/components/fighter/fighter-game"),
         },
         {
+            path:"/mobile",
+            name:"mobile",
+            component:()=> import("@/components/mobile/mobile-index"),
+        },
+        {
             path:"/*",
             name:"*",
             component:()=> import("@/components/404"),

@@ -16,7 +16,6 @@ export default {
 
     },
     mounted(){
-        console.log(this.enemyPlane)
         if(this.enemyPlane.destroy){
             return ;
         }
@@ -24,7 +23,7 @@ export default {
             this.enemyPlane.top++;
             this.$store.commit("fighterDestroy",this.enemyPlane)
             if(this.enemyPlane.top > document.body.offsetHeight|| this.$store.state.game.gameState!=1 || this.enemyPlane.destroy){//超出销毁 游戏结束销毁 被击中销毁
-                //this.enemyPlane.destroy = true;
+                this.enemyPlane.destroy = true;
                 clearInterval(this.timeout)
             }
         },10)

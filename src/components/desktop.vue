@@ -1,6 +1,6 @@
 <template >
     <div class="desktop" >
-        <waterfall @height="waterfallHeight" class="aa" ref="cc" :list="item" :key="i" :index="i"  v-for="(item,i) in waterfall" />
+        <waterfall @height="waterfallHeight" class="aa" ref="cc" :width="width" :list="item" :key="i" :index="i"  v-for="(item,i) in waterfall" />
     </div>
     
 </template>
@@ -13,6 +13,7 @@ export default {
     data(){
         return {
             state:true,
+            width:"",
             list:[
                 {"id":"a","url":require("../assets/a.jpeg")},
                 {"id":"b","url":require("../assets/b.jpg") },
@@ -33,9 +34,9 @@ export default {
             return n > 5 ? n-5 : n;
         },
         addPic:function(){
-            const obj = this.list[this.radom()];
-            const i = this.minHeight();
-            if(this.heightList[i] < this.height){
+            const obj = this.list[this.radom()];//随机抽取图片
+            const i = this.minHeight();// 找到最低高度的列
+            if(this.heightList[i] < this.height){//最低高度的列高小于文档列高
                 this.waterfall[i].push(obj);
             }else{
                 this.state = true;
@@ -49,10 +50,10 @@ export default {
                 this.addPic();//添加图片
             },100)
         },
-        waterfallHeight(Obj){
+        waterfallHeight(Obj){//将子元素提交的高度更新到对象上
            this.heightList = {...this.heightList,...Obj}
         },
-        minHeight(){
+        minHeight(){//找出该对象中 高度最低的项
             let list = [];
             for(let k in this.heightList){
                 list.push(this.heightList[k]);
@@ -60,18 +61,15 @@ export default {
             return list.indexOf(Math.min(...list));
         }
     },
-
-    beforeUpdate(){
-        // this.scrol();
-        // this.state = false;
-    },
     updated(){
         //防抖
         if(this.state){
             this.scrol();
         }
+       this.width = this.$el.offsetWidth/this.waterfall.length + "px";
         
     },
+
     mounted(){
         this.waterfall  = [[],[],[],[]];
         window.addEventListener("scroll",()=>{
@@ -83,10 +81,13 @@ export default {
                 this.scrol();//添加图片
             }
         })
+        window.onresize = ()=>{
+            this.width = this.$el.offsetWidth/this.waterfall.length + "px";
+        }
     }
 }
 </script>
 <style>
 .desktop{overflow: hidden;}
-.aa{float:left;margin:0 10px}
+.aa{float:left;padding:0 10px;box-sizing: border-box;}
 </style>

@@ -1,6 +1,6 @@
 <template>
   <Layout>
-    <Sider></Sider>
+    
     <Layout>
       <Header></Header>
       <Content>
@@ -10,7 +10,7 @@
       </Content>
       <Footer></Footer>
     </Layout>
-    <Sider></Sider>
+    
   </Layout>
 </template>
 

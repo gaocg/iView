@@ -1,5 +1,5 @@
 <template>
-    <List :split="split" size="default" style="width:200px">
+    <List :split="split" size="default" :style="{width:width}">
         <ListItem  :key="i" v-for="(item,i) in list">
             <img :src="item.url" style="width:100%"/>
         </ListItem>
@@ -8,8 +8,9 @@
 <script>
 export default {
     props:{
-        list:Array ,
-        index:Number,
+        list:Array ,//图片列表
+        index:Number,//当前列对于父组件的下标
+        width:String,
     },
     data(){
         return {
@@ -31,6 +32,7 @@ export default {
     mounted(){
         this.Obj[this.index] = this.$el.offsetHeight;
         this.$emit("height",this.Obj);
+
     }
 }
 </script>

@@ -83,7 +83,6 @@ export default {
                     break;       
                
             }
-            console.log(move.distance)
              return  move;
         },
         
@@ -119,7 +118,7 @@ export default {
                    list.push(k);
                     const move = this.move(1,k);
                     this.$store.commit("upDataFighter",this.fighter)
-                    this.$refs.fighter.$el.style[move.direction] = move.distance + "px";
+                    this.$refs.fighter?this.$refs.fighter.$el.style[move.direction] = move.distance + "px":null;
                }
            }
            if(!list.length) return;

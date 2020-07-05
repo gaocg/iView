@@ -3,7 +3,7 @@
     <div id="controlArea">
         <div >
             <List>
-                <ListItem><label>游戏时间</label><span>{{}}</span></ListItem>
+                <ListItem><label>游戏时间</label><span>{{state.time}}</span></ListItem>
                 <ListItem><label>积分</label><span>{{this.$store.getters.getScore*10}}</span></ListItem>
                 <ListItem><label>消耗弹药</label><span>{{this.$store.state.game.count.length}}</span></ListItem>
             </List>
@@ -30,26 +30,41 @@ export default {
             state:{
                 hightShoot:false,
                 hightMove:false,
+                time:null,
+                t:""
             }
         }
     },
     computed:{
-
+        gameState(){return this.$store.state.game.gameState}
+    },
+    watch:{
+        gameState(){
+            this.addTime()
+        }
     },
     methods:{
         start(){
+            this.state.time=0;
             this.$store.commit("clear");//初始化
             this.$store.commit("start");
             this.$store.dispatch("createEnemyPlane")
         },
         change(){
-          console.log(this.state)
           const shoot = this.state.hightSpeed ? 150 : 300;
           const move = this.state.hightMove ? 50 : 30;
           const fighter = this.$store.state.game.fighter;
           fighter.shootspeed = shoot;
           fighter.movespeed = move;
           this.$store.commit("upDataFighter",fighter);       
+        },
+        addTime(){
+            if(this.gameState == 2){return }
+            
+            this.state.time++;
+            setTimeout(()=>{
+                this.addTime();
+            },1000)
         }
     },
     mounted(){

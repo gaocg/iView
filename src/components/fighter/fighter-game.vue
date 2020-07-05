@@ -18,8 +18,8 @@
 export default {
     components:{
         fighter:()=>import("./fighter"),
-        enemyPlane:()=>import("./enemyPlane"),
-        controlArea:()=>import("./controlArea")
+        enemyPlane:()=>import("./enemy-plane"),
+        controlArea:()=>import("./control-area")
     },
     data(){
         return{
@@ -36,8 +36,6 @@ export default {
     updated(){
     },
     mounted(){
-        console.log(this.$store.state.game.enemyPlane)
-        //this.addEnemyPlane()
     }
 }
 </script>
