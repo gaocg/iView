@@ -8,7 +8,7 @@
 <script>
 export default {
     props:{
-        list:Array ,//图片列表哈哈
+        list:Array ,//图片列表
         index:Number,//当前列对于父组件的下标
         width:String,
     },
