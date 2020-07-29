@@ -13,7 +13,7 @@ export default {
         width:String,
     },
     data(){
-        return {
+        return { 
             split:false,
             Obj:{},
         }
