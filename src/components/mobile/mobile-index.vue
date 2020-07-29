@@ -1,6 +1,6 @@
 <template>
     <div id="mobile" v-if="UA">
-        
+         <router-view></router-view>
     </div>
     <div v-else>请在移动端打开</div>
 </template>

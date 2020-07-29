@@ -15,6 +15,14 @@
     "name":"mobile",
     "icon":"md-help"
 },{
+    "title":"理解promise",
+    "name":"promise",
+    "icon":"md-help"
+},{
+    "title":"集中for遍历的区别",
+    "name":"for",
+    "icon":"md-help"
+},{
     "title":"还没想好做什么",
     "icon":"md-help"
 }]
