@@ -23,7 +23,7 @@ div{display: flex;justify-content: space-around;align-items: center;background: 
     border-radius: 100%;
     padding:10px;
     color:#fff;
-    /*filter: invert(1);反转颜色 */
+    /*filter: invert(1);反转颜色*/
 }
 .icon:hover {
     filter: invert(0)
