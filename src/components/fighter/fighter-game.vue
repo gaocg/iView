@@ -2,7 +2,7 @@
 <template>
     <Layout style="height:100%">
         <Layout>
-            <Content style="height:900px" id="gameArea">
+            <Content style="height:800px" id="gameArea">
                 <fighter v-if="!this.$store.state.game.fighter.destory" />  
                 <enemyPlane :key="index"  :enemyPlane="item" v-for="(item,index) in this.$store.state.game.enemyPlane"/>             
             </Content>

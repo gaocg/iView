@@ -2,7 +2,7 @@ import Vue from "vue";
 import Router from "vue-router";
 
 Vue.use(Router)
-const root = "/vue";
+const root = "";
 export default new Router({
     mode:   "history",
     routes :[
@@ -33,9 +33,14 @@ export default new Router({
             component:()=> import("@/components/mobile/mobile-index"),
             children:[{
                 path:root +"/mobile/fighter",
-                name:"fighter",
+                name:"fighter3",
                 component:()=> import("@/components/fighter/fighter-game"),
             },]
+        },
+        {
+            path:root +"/Home",
+            name:"Home",
+            component:()=> import("@/components/pageEffect/Home"),
         },
         {
             path:root +"/*",
