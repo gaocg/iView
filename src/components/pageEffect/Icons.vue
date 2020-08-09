@@ -27,7 +27,7 @@ div{display: flex;justify-content: space-around;align-items: center;background: 
 }
 .icon:hover {
     filter: invert(0)
-    drop-shadow(0 0 3px rgb(65, 203, 238));
+    drop-shadow(0 0 3px rgb(65, 203, 238));/*图标阴影 */
     transition: 0.6s;/*渐变效果 */
     box-shadow: 0 0 14px 4px rgb(65, 203, 238);
 }
