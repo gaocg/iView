@@ -12,7 +12,7 @@
             </Panel>
           </Collapse>
         </Sider>
-        <Content style="margin:10px;min-height:500px">
+        <Content style="margin:10px;min-height:500px;max-height:700px;">
           <home :name="name"/>
         </Content> 
       </Layout>
